@@ -45,8 +45,14 @@ namespace AppiumSpecflowDemo.Helpers
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
-
-                process.WaitForExit();
+                if (command.Contains("avd"))
+                {
+                    Thread.Sleep(10000);
+                }
+                else
+                {
+                    process.WaitForExit();
+                }
             }
         }
     }

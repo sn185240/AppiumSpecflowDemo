@@ -21,7 +21,7 @@ namespace AppiumSpecflowDemo.StepDefinitions
         [Given(@"I enter password and login")]
         public void GivenIEnterPasswordAndLogin(Table table)
         {
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
             dynamic data = table.CreateDynamicInstance();
             AppiumWebElement okButton= appiumDriver.FindElementById("android:id/button1");
             Thread.Sleep(500);
