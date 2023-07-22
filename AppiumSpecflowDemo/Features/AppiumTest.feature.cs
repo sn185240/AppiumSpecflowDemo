@@ -99,6 +99,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("I enter password and login", ((string)(null)), table1, "Given ");
 #line hidden
+#line 10
+ testRunner.When("I add table with two guests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.And("I search and select the item \'Quick Burger\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.Then("I remove item and close the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

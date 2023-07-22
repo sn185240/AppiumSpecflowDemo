@@ -49,8 +49,8 @@ namespace AppiumSpecflowDemo.Hooks
         {
             //string testExecutionJsonPath = $"{Environment.CurrentDirectory}\\TestExecution.json";
             //WaitForFile(testExecutionJsonPath);
-            //string command = "livingdoc test-assembly AppiumSpecflowDemo.dll -t TestExecution.json --output \"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\MyReport.html\"";
-            string command = "livingdoc test-assembly AppiumSpecflowDemo.dll --output \"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\MyReport.html\"";
+            string command = "livingdoc test-assembly AppiumSpecflowDemo.dll -t TestExecution.json --output \"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\MyReport.html\"";
+            //string command = "livingdoc test-assembly AppiumSpecflowDemo.dll --output \"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\MyReport.html\"";
             new CommandHelper().RunCommand(command);
         }
 

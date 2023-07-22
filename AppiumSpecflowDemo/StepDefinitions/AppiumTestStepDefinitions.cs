@@ -1,3 +1,4 @@
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using System;
@@ -18,10 +19,52 @@ namespace AppiumSpecflowDemo.StepDefinitions
             appiumDriver = _scenarioContext.Get<AndroidDriver<AppiumWebElement>>("AppiumDriver");
         }
 
+        [Given(@"I enroll device")]
+        public void GivenIEnrollDevice()
+        {
+            Thread.Sleep(5000);
+            appiumDriver.FindElementById("com.android.permissioncontroller:id/permission_allow_button").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementById("com.android.permissioncontroller:id/permission_allow_button").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementById("com.android.permissioncontroller:id/permission_allow_button").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByAccessibilityId("Open navigation drawer").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//*[@text=\"About\"]").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//*[@text=\"Enroll Device\"]").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementById("com.ncr.AlohaMobile:id/btnManualIpEntry").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//android.view.ViewGroup[@content-desc=\"EnrollDeviceDialog\"]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.EditText").SendKeys("192.168.56.199");
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//android.view.ViewGroup[@content-desc=\"EnrollDeviceDialog\"]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.EditText").SendKeys("8897");
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//android.view.ViewGroup[@content-desc=\"EnrollDeviceDialog\"]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.EditText").SendKeys("TempOPAYPWD@123");
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//*[@text=\"Begin Enrollment\"]").Click(); 
+            Thread.Sleep(5000);
+            appiumDriver.FindElementByXPath("//android.view.ViewGroup[@content-desc=\"AboutPortraitMode\"]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.Button").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//*[contains(@text,\"23 aXi\")]").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByAccessibilityId("android:id/button1").Click();
+            Thread.Sleep(500);
+            appiumDriver.FindElementByXPath("//*[@text=\"Confirm Enrollment\"]").Click();
+            Thread.Sleep(500);
+            if(appiumDriver.FindElements(By.Id("android:id/message")).Count > 0)
+            {
+                appiumDriver.FindElementByAccessibilityId("android:id/button1").Click();
+                Thread.Sleep(500);
+            }
+        }
+
+
         [Given(@"I enter password and login")]
         public void GivenIEnterPasswordAndLogin(Table table)
         {
-            //Thread.Sleep(5000);
+            Thread.Sleep(5000);
             dynamic data = table.CreateDynamicInstance();
             AppiumWebElement okButton= appiumDriver.FindElementById("android:id/button1");
             Thread.Sleep(500);
