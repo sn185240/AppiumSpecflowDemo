@@ -42,12 +42,20 @@ namespace AppiumSpecflowDemo.Helpers
                     }
                 };
 
-                process.Start();
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
+                try
+                {
+                    process.Start();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                
+                //process.BeginOutputReadLine();
+                //process.BeginErrorReadLine();
                 if (command.Contains("avd"))
                 {
-                    Thread.Sleep(10000);
+                    Thread.Sleep(5000);
                 }
                 else
                 {
