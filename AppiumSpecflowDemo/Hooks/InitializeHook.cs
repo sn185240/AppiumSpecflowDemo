@@ -1,6 +1,9 @@
 ﻿using AppiumSpecflowDemo.Drivers;
 using AppiumSpecflowDemo.Helpers;
 using Microsoft.VisualStudio.TestPlatform.Utilities;
+using NUnit.Framework;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +40,17 @@ namespace AppiumSpecflowDemo.Hooks
             //_scenarioContext.Set(appiumDriver.InitializeAppium(),"Driver");
             _scenarioContext["AppiumDriver"] = appiumDriver.InitializeAppium();
             
+        }
+
+        [AfterStep]
+
+        public static void AfterStep()
+        {
+            if (Assert.Fail()==true)
+            {
+                Screenshot screeenshot = appiumDriver.GetScreenshot();
+                screeenshot.SaveAsFile("filePath");
+            }
         }
 
         [AfterTestRun]
