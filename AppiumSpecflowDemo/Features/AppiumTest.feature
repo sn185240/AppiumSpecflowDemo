@@ -1,6 +1,6 @@
 ﻿Feature: AppiumTest
 
-A short summary of the feature
+A demo feature to demonstrate Appium, SpecFlow with c#
 
 @test
 Scenario: Appium Demo Scenario

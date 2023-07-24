@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace AppiumSpecflowDemo.Hooks
 {
@@ -42,14 +44,15 @@ namespace AppiumSpecflowDemo.Hooks
             
         }
 
-        [AfterStep]
+        [AfterScenario]
 
-        public static void AfterStep()
+        public void AfterScenario()
         {
-            if (Assert.Fail()==true)
+            AndroidDriver<AppiumWebElement>  appiumDriver =_scenarioContext.Get<AndroidDriver<AppiumWebElement>>("AppiumDriver");
+            if (_scenarioContext.TestError!=null)
             {
-                Screenshot screeenshot = appiumDriver.GetScreenshot();
-                screeenshot.SaveAsFile("filePath");
+                Screenshot screeenshot= appiumDriver.TakeScreenshot();
+                screeenshot.SaveAsFile("C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\screenshot.png");
             }
         }
 
