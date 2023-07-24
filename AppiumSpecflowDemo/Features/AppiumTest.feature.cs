@@ -74,14 +74,25 @@ namespace AppiumSpecflowDemo.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Perform Simple Appium Test")]
-        [NUnit.Framework.CategoryAttribute("smoke")]
-        public void PerformSimpleAppiumTest()
+        [NUnit.Framework.DescriptionAttribute("Appium Demo Scenario")]
+        [NUnit.Framework.CategoryAttribute("test")]
+        [NUnit.Framework.TestCaseAttribute("1", "Quick Burger", "Quick Burger", "2", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "7 UP", "QuickBurger", "2", null)]
+        public void AppiumDemoScenario(string numberOfGuests, string item, string selectedItem, string table, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "smoke"};
+            string[] @__tags = new string[] {
+                    "test"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Perform Simple Appium Test", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("NumberOfGuests", numberOfGuests);
+            argumentsOfScenario.Add("Item", item);
+            argumentsOfScenario.Add("SelectedItem", selectedItem);
+            argumentsOfScenario.Add("Table", table);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Appium Demo Scenario", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,16 +111,22 @@ this.ScenarioInitialize(scenarioInfo);
                 table1.AddRow(new string[] {
                             "200"});
 #line 8
- testRunner.Given("I enter password and login", ((string)(null)), table1, "Given ");
+ testRunner.And("I enter password and login", ((string)(null)), table1, "And ");
 #line hidden
 #line 11
- testRunner.When("I add table with two guests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I add table with \'{0}\' guests", numberOfGuests), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.And("I search and select the item \'Quick Burger\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I search and select the item \'{0}\'", item), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.Then("I remove item and close the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And(string.Format("I validate that the item \'{0}\' has been added", selectedItem), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.Then("I pay with exact cash and close the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 16
+ testRunner.And(string.Format("I verify that table \'{0}\' is available", table), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

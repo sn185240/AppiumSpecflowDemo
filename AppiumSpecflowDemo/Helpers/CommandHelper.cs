@@ -55,7 +55,7 @@ namespace AppiumSpecflowDemo.Helpers
                 //process.BeginErrorReadLine();
                 if (command.Contains("avd"))
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(10000);
                 }
                 else
                 {
