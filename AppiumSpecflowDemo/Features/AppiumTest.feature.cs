@@ -35,7 +35,7 @@ namespace AppiumSpecflowDemo.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AppiumTest", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AppiumTest", "A demo feature to demonstrate Appium, SpecFlow with c#", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,7 +77,7 @@ namespace AppiumSpecflowDemo.Features
         [NUnit.Framework.DescriptionAttribute("Appium Demo Scenario")]
         [NUnit.Framework.CategoryAttribute("test")]
         [NUnit.Framework.TestCaseAttribute("1", "Quick Burger", "Quick Burger", "2", null)]
-        [NUnit.Framework.TestCaseAttribute("2", "7 UP", "QuickBurger", "2", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "7 UP", "Quick Burger", "2", null)]
         public void AppiumDemoScenario(string numberOfGuests, string item, string selectedItem, string table, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -122,10 +122,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.And(string.Format("I validate that the item \'{0}\' has been added", selectedItem), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 14
  testRunner.Then("I pay with exact cash and close the order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 15
  testRunner.And(string.Format("I verify that table \'{0}\' is available", table), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

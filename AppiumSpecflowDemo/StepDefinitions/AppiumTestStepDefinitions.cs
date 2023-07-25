@@ -125,7 +125,7 @@ namespace AppiumSpecflowDemo.StepDefinitions
         {
             Thread.Sleep(1500);
             bool elemnetFound = appiumDriver.FindElements(By.XPath($"//*[contains(@text,\"{itemToValidate}\")]")).Count > 0;
-            Assert.AreEqual(true, elemnetFound);
+            Assert.AreEqual(true, elemnetFound, $"The item {itemToValidate} was not added to the ticket");
             Thread.Sleep(500);
         }
 
