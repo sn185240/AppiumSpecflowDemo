@@ -1,11 +1,17 @@
 ﻿using AppiumSpecflowDemo.Drivers;
 using AppiumSpecflowDemo.Helpers;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
+using NUnit.Framework;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace AppiumSpecflowDemo.Hooks
 {
@@ -23,18 +29,31 @@ namespace AppiumSpecflowDemo.Hooks
         public static void BeforeTestRun()
         {
             ClearOutputFolder();
-            ClearTestJson();
+            //ClearTestJson();
         }
 
         [BeforeScenario]
-        public void Initialize()
+        public void BeforeScenario()
         {
-            
+            string startEmulatorCMD = "emulator -avd Axium_API_29_1";
+            new CommandHelper().RunCommand(startEmulatorCMD);
             AppiumDriver appiumDriver = new AppiumDriver();
             //context injection sets the type
             //_scenarioContext.Set(appiumDriver.InitializeAppium(),"Driver");
             _scenarioContext["AppiumDriver"] = appiumDriver.InitializeAppium();
             
+        }
+
+        [AfterScenario]
+
+        public void AfterScenario()
+        {
+            AndroidDriver<AppiumWebElement>  appiumDriver =_scenarioContext.Get<AndroidDriver<AppiumWebElement>>("AppiumDriver");
+            if (_scenarioContext.TestError!=null)
+            {
+                Screenshot screeenshot= appiumDriver.TakeScreenshot();
+                screeenshot.SaveAsFile("C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\screenshot.png");
+            }
         }
 
         [AfterTestRun]
@@ -45,16 +64,18 @@ namespace AppiumSpecflowDemo.Hooks
 
         public static void GenerateReport()
         {
-            string testExecutionJsonPath = $"{Environment.CurrentDirectory}\\TestExecution.json";
-            WaitForFile(testExecutionJsonPath);
+            //string testExecutionJsonPath = $"{Environment.CurrentDirectory}\\TestExecution.json";
+            //WaitForFile(testExecutionJsonPath);
             string command = "livingdoc test-assembly AppiumSpecflowDemo.dll -t TestExecution.json --output \"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\MyReport.html\"";
+            //string command = "livingdoc test-assembly AppiumSpecflowDemo.dll --output \"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\Output\\MyReport.html\"";
             new CommandHelper().RunCommand(command);
         }
 
         public static void ClearOutputFolder()
         {
 
-            string outputFolderPath = @"C:\GitHub Repositories\AppiumSpecflowDemo\AppiumSpecflowDemo\Output";
+            string outputFolderPath = @"C:\GitHub Repositories\AppiumSpecflowDemo\AppiumSpecflowDemo\Output\";
+                                       
             DirectoryInfo di = new DirectoryInfo(outputFolderPath);
             foreach (FileInfo file in di.GetFiles())
             {

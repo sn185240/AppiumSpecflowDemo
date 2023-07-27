@@ -19,8 +19,8 @@ namespace AppiumSpecflowDemo.Drivers
             driverOptions.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
             driverOptions.AddAdditionalCapability(MobileCapabilityType.DeviceName, "emulator-5554");
             driverOptions.AddAdditionalCapability(MobileCapabilityType.NoReset, true);
-            //driverOptions.AddAdditionalCapability("appPackage", "com.ncr.AlohaMobile");
-            //driverOptions.AddAdditionalCapability("appActivity", "crc64d9654bb2b0029034.MainActivity");
+            driverOptions.AddAdditionalCapability("appPackage", "com.ncr.AlohaMobile");
+            driverOptions.AddAdditionalCapability("appActivity", "crc64d9654bb2b0029034.MainActivity");
             driverOptions.AddAdditionalCapability(MobileCapabilityType.App, @"C:\\GitHub Repositories\\AppiumSpecflowDemo\\AppiumSpecflowDemo\\APK\\OrderPay.apk");
 
             //var AppiumService = new AppiumServiceBuilder().WithIPAddress("127.0.0.1").UsingPort(4723).Build();
